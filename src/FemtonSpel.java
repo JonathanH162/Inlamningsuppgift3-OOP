@@ -19,8 +19,8 @@ public class FemtonSpel extends JFrame {
         mainPanel.setLayout(new BorderLayout());
         mainPanel.add(tilePanel, BorderLayout.CENTER);
         mainPanel.add(bottomPanel, BorderLayout.SOUTH);
-        newGame(); // Metod finns inte ännu, kommer finnas framöver
-        newGameButton.addActionListener(new buttonListener()); // Metod finns inte ännu, kommer finnas framöver
+        newGame(); 
+        newGameButton.addActionListener(new buttonListener());
         winButton.addActionListener(new buttonListener());
         add(mainPanel);
 
