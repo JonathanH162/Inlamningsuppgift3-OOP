@@ -55,6 +55,22 @@ public class FemtonSpel extends JFrame {
             button.addActionListener(new buttonListener());
         }
     }
+    // Kontrollerar om den valda knappen kan byta plats med den tomma platsen
+    private void checkIndex(JButton button){
+    int index = buttonsGame.indexOf(button);
+    if(index % 4 != 0){
+        isEmpty(index -1, button);
+    }
+    if(index - 4 >= 0){
+        isEmpty(index - 4, button);
+    }
+    if(index % 4 != 3){
+        isEmpty(index + 1, button);
+    }
+    if(index + 4 < buttonsGame.size()){
+        isEmpty(index + 4, button);
+        }
+    }
      
 
     public static void main(String[] args){ FemtonSpel fs = new FemtonSpel();}
