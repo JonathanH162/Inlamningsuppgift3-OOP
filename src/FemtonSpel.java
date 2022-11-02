@@ -71,6 +71,15 @@ public class FemtonSpel extends JFrame {
         isEmpty(index + 4, button);
         }
     }
+    
+    //Kontrollera om platsen är tom, om den är det byt plats med den klickade knappen
+    private void isEmpty(int empty, JButton button){
+        JButton switchPlace = buttonsGame.get(empty);
+        if(switchPlace.getText().equals("")){
+            switchPlace.setText(button.getText());
+            button.setText("");
+        }
+    }
      
 
     public static void main(String[] args){ FemtonSpel fs = new FemtonSpel();}
