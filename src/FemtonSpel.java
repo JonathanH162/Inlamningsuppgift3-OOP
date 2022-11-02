@@ -30,9 +30,15 @@ public class FemtonSpel extends JFrame {
         setDefaultCloseOperation(EXIT_ON_CLOSE);
 
     }
-
-
+    // Lägg alla knappar i en lista, shuffla listan med Collections.shuflle();
+    private void makeButtonList(){
+        buttonsGame = new ArrayList<>();
+        for(int i = 1; i < 16; i++){
+            buttonsGame.add(new JButton(String.valueOf(i)));
+        }
+        buttonsGame.add(new JButton());
+        Collections.shuffle(buttonsGame);
+    }
 
     public static void main(String[] args){ FemtonSpel fs = new FemtonSpel();}
-
 }
