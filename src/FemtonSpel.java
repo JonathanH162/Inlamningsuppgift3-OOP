@@ -80,7 +80,18 @@ public class FemtonSpel extends JFrame {
             button.setText("");
         }
     }
-     
+    // kontrollera så att det är rätt ordning 1-15 med den sista platsen tom, isf kör metoden youWonOutPrint();
+    public void checkOrder(){
+        for(int i = 0; i <buttonsGame.size() -1; i++){
+            JButton button = buttonsGame.get(i);
+            if(button.getText().equals("")){
+                return;
+            } else if (Integer.parseInt(button.getText()) != (i +1)) {
+                return;
+            }
+        }
+        youWonOutPrint();
+    } 
 
     public static void main(String[] args){ FemtonSpel fs = new FemtonSpel();}
 }
