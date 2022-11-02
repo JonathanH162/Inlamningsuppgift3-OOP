@@ -92,6 +92,25 @@ public class FemtonSpel extends JFrame {
         }
         youWonOutPrint();
     } 
+    
+     class buttonListener implements ActionListener{
+
+        @Override
+        public void actionPerformed(ActionEvent actionEvent) {
+            if(actionEvent.getSource() != newGameButton && actionEvent.getSource() != winButton){
+                checkIndex((JButton) actionEvent.getSource());
+                checkOrder();
+            }
+            else if (actionEvent.getSource() == newGameButton) {
+                newGame();
+            } else if (actionEvent.getSource() == winButton) {
+                for(int i = 0; i < buttonsGame.size() -1; i++){
+                    buttonsGame.get(i).setText(String.valueOf(i +1));
+                }
+                buttonsGame.get(15).setText("");
+            }
+        }
+    }
 
     public static void main(String[] args){ FemtonSpel fs = new FemtonSpel();}
 }
