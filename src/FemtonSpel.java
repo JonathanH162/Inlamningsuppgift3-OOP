@@ -39,6 +39,23 @@ public class FemtonSpel extends JFrame {
         buttonsGame.add(new JButton());
         Collections.shuffle(buttonsGame);
     }
+    
+    // printa ut meddelande vid vinst
+    private void youWonOutPrint(){
+        JOptionPane.showMessageDialog(null, "Grattis du vann!");
+        /*System.exit(0);*/
+    }
+    //Alla brickor blandas slumpmässigt
+    private void newGame(){
+        makeButtonList();
+        tilePanel.removeAll(); // Tar bort alla komponenter
+        tilePanel.revalidate(); // placerar om
+        for(JButton button : buttonsGame){
+            tilePanel.add(button);
+            button.addActionListener(new buttonListener());
+        }
+    }
+     
 
     public static void main(String[] args){ FemtonSpel fs = new FemtonSpel();}
 }
