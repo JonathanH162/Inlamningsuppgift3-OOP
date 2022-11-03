@@ -12,8 +12,9 @@ public class SlidingPuzzle extends JFrame {
     private JPanel mainPanel = new JPanel();
     private JPanel bottomPanel = new JPanel();
     private JButton newGameButton = new JButton("New Game");
-    private JButton winButton = new JButton("Click to win"); 
+    private JButton winButton = new JButton("Click to Win"); 
     private List<JButton> buttonsGame;
+    private JLabel victoryMessage = new JLabel("Congratulations, You win!");
 
     public SlidingPuzzle(){
         
@@ -24,11 +25,14 @@ public class SlidingPuzzle extends JFrame {
         mainPanel.add(tilePanel, BorderLayout.CENTER);
         mainPanel.add(bottomPanel, BorderLayout.SOUTH);
         newGame(); 
+        victoryMessage.setFont(new Font("arial",Font.ITALIC,35));
         newGameButton.addActionListener(new buttonListener());
+        newGameButton.setFont(new Font("arial",Font.ITALIC,30));
         winButton.addActionListener(new buttonListener());
+        winButton.setFont(new Font("arial",Font.ITALIC,30));
         add(mainPanel);
 
-        setSize(400,400);
+        setSize(500,500);
         setTitle("Sliding puzzle");
         setVisible(true);
         setLocationRelativeTo(null);
@@ -42,6 +46,10 @@ public class SlidingPuzzle extends JFrame {
             buttonsGame.add(new JButton(String.valueOf(i)));
         }
         buttonsGame.add(new JButton());
+        for (JButton button : buttonsGame) {
+            button.setFont(new Font("garamond", Font.ITALIC, 50));
+            button.setBorder(BorderFactory.createLineBorder(Color.black));
+        }        
         Collections.shuffle(buttonsGame);
     }
 
@@ -71,7 +79,7 @@ public class SlidingPuzzle extends JFrame {
 
     }
 
-    //Kontrollera om platsen är tom, om den är det byt plats med den klickade knappen
+    //Kontrollera om platsen är tom, om den är det byter den plats med den klickade knappen
     private void isBlank(int empty, JButton button){
         JButton switchPlace = buttonsGame.get(empty);
         if(switchPlace.getText().equals("")){
@@ -80,8 +88,8 @@ public class SlidingPuzzle extends JFrame {
         }
     }
 
-    //Kontrollera så att det är rätt orning, 1-15 med sista platsen tom
-    public void checkOrder(){
+    //Kontrollera så att det är rätt ordning, 1-15 med sista platsen tom
+    public void checkWinningCondition(){
         for(int i = 0; i <buttonsGame.size() -1; i++){
             JButton button = buttonsGame.get(i);
             if(button.getText().equals("")){
@@ -90,7 +98,7 @@ public class SlidingPuzzle extends JFrame {
                 return;
             }
         }
-        JOptionPane.showMessageDialog(null, "Congratulations you won!");
+        JOptionPane.showMessageDialog(null, victoryMessage);
     } 
     
      class buttonListener implements ActionListener {
@@ -99,7 +107,7 @@ public class SlidingPuzzle extends JFrame {
         public void actionPerformed(ActionEvent actionEvent) {
             if(actionEvent.getSource() != newGameButton && actionEvent.getSource() != winButton){
                 checkIndex((JButton) actionEvent.getSource());
-                checkOrder();
+                checkWinningCondition();
             }
             else if (actionEvent.getSource() == newGameButton) {
                 newGame();
