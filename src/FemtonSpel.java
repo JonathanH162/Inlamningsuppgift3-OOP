@@ -1,5 +1,9 @@
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 public class FemtonSpel extends JFrame {
@@ -39,12 +43,7 @@ public class FemtonSpel extends JFrame {
         buttonsGame.add(new JButton());
         Collections.shuffle(buttonsGame);
     }
-    
-    // printa ut meddelande vid vinst
-    private void youWonOutPrint(){
-        JOptionPane.showMessageDialog(null, "Grattis du vann!");
-        /*System.exit(0);*/
-    }
+
     //Alla brickor blandas slumpmässigt
     private void newGame(){
         makeButtonList();
@@ -90,10 +89,10 @@ public class FemtonSpel extends JFrame {
                 return;
             }
         }
-        youWonOutPrint();
+        JOptionPane.showMessageDialog(null, "Congratulations you won!");
     } 
     
-     class buttonListener implements ActionListener{
+     class buttonListener implements ActionListener {
 
         @Override
         public void actionPerformed(ActionEvent actionEvent) {
