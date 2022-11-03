@@ -1,5 +1,5 @@
 public class Main {
 
-    public static void main(String[] args){ FemtonSpel fs = new FemtonSpel();}
+    public static void main(String[] args){ SlidingPuzzle fs = new SlidingPuzzle();}
 
 }

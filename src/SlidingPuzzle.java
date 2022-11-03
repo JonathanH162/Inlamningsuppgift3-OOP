@@ -6,7 +6,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-public class FemtonSpel extends JFrame {
+public class SlidingPuzzle extends JFrame {
 
     private JPanel tilePanel = new JPanel();
     private JPanel mainPanel = new JPanel();
@@ -15,7 +15,7 @@ public class FemtonSpel extends JFrame {
     private JButton winButton = new JButton("Click to win"); 
     private List<JButton> buttonsGame;
 
-    public FemtonSpel(){
+    public SlidingPuzzle(){
         
         tilePanel.setLayout(new GridLayout(4,4));
         bottomPanel.add(newGameButton);
@@ -35,7 +35,7 @@ public class FemtonSpel extends JFrame {
         setDefaultCloseOperation(EXIT_ON_CLOSE);
 
     }
-    // Lägg alla knappar i en lista, shuffla listan med Collections.shuflle();
+    //Lägg alla knappar i en lista, shuffla listan
     private void makeButtonList(){
         buttonsGame = new ArrayList<>();
         for(int i = 1; i < 16; i++){
@@ -45,7 +45,7 @@ public class FemtonSpel extends JFrame {
         Collections.shuffle(buttonsGame);
     }
 
-    //Alla brickor blandas slumpmässigt
+    // Alla knappar blandas slumpmässigt
     private void newGame(){
         makeButtonList();
         tilePanel.removeAll(); 
@@ -55,32 +55,32 @@ public class FemtonSpel extends JFrame {
             button.addActionListener(new buttonListener());
         }
     }
-    // Kontrollerar om den valda knappen kan byta plats med den tomma platsen
+
+    // Kontrollera om den valda knappen kan byta plats med den tomma platsen
     private void checkIndex(JButton button){
+
     int index = buttonsGame.indexOf(button);
-    if(index % 4 != 0){
-        isEmpty(index -1, button);
+
+    if(index % 4 != 0){isBlank(index -1, button);}
+
+    if(index - 4 >= 0){isBlank(index - 4, button);}
+
+    if(index % 4 != 3){isBlank(index + 1, button);}
+
+    if(index + 4 < buttonsGame.size()){isBlank(index + 4, button);}
+
     }
-    if(index - 4 >= 0){
-        isEmpty(index - 4, button);
-    }
-    if(index % 4 != 3){
-        isEmpty(index + 1, button);
-    }
-    if(index + 4 < buttonsGame.size()){
-        isEmpty(index + 4, button);
-        }
-    }
-    
+
     //Kontrollera om platsen är tom, om den är det byt plats med den klickade knappen
-    private void isEmpty(int empty, JButton button){
+    private void isBlank(int empty, JButton button){
         JButton switchPlace = buttonsGame.get(empty);
         if(switchPlace.getText().equals("")){
             switchPlace.setText(button.getText());
             button.setText("");
         }
     }
-    // kontrollera så att det är rätt ordning 1-15 med den sista platsen tom, isf kör metoden youWonOutPrint();
+
+    //Kontrollera så att det är rätt orning, 1-15 med sista platsen tom
     public void checkOrder(){
         for(int i = 0; i <buttonsGame.size() -1; i++){
             JButton button = buttonsGame.get(i);
