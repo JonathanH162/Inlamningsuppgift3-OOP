@@ -112,5 +112,4 @@ public class FemtonSpel extends JFrame {
         }
     }
 
-    public static void main(String[] args){ FemtonSpel fs = new FemtonSpel();}
 }
