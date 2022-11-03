@@ -11,12 +11,12 @@ public class FemtonSpel extends JFrame {
     private JPanel tilePanel = new JPanel();
     private JPanel mainPanel = new JPanel();
     private JPanel bottomPanel = new JPanel();
-    private JButton newGameButton = new JButton("Nytt spel");
-    private JButton winButton = new JButton("Klicka för vinst"); // Alla brickor läggs ut sorterade demonstrera vinst.
+    private JButton newGameButton = new JButton("New Game");
+    private JButton winButton = new JButton("Click to win"); 
     private List<JButton> buttonsGame;
 
     public FemtonSpel(){
-        // Lägg till panel,Layout, "Nytt spel" knapp och "Klicka för vinst" knapp
+        
         tilePanel.setLayout(new GridLayout(4,4));
         bottomPanel.add(newGameButton);
         bottomPanel.add(winButton);
@@ -28,7 +28,8 @@ public class FemtonSpel extends JFrame {
         winButton.addActionListener(new buttonListener());
         add(mainPanel);
 
-        pack();
+        setSize(400,400);
+        setTitle("Sliding puzzle");
         setVisible(true);
         setLocationRelativeTo(null);
         setDefaultCloseOperation(EXIT_ON_CLOSE);
@@ -47,8 +48,8 @@ public class FemtonSpel extends JFrame {
     //Alla brickor blandas slumpmässigt
     private void newGame(){
         makeButtonList();
-        tilePanel.removeAll(); // Tar bort alla komponenter
-        tilePanel.revalidate(); // placerar om
+        tilePanel.removeAll(); 
+        tilePanel.revalidate(); 
         for(JButton button : buttonsGame){
             tilePanel.add(button);
             button.addActionListener(new buttonListener());
